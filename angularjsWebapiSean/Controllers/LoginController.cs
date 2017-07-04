@@ -25,8 +25,8 @@ namespace angularjsWebapiSean.Controllers
         {
             LoginModel login = new LoginModel()
             {
-                username = "jacob.zuma",
-                password = "tangent"
+                username = username,
+                password = password
             };
             try { 
                 String token = await client.getToken(login);
