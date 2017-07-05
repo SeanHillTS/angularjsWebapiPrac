@@ -13,10 +13,10 @@ namespace angularjsWebapiSean.Controllers
     [Route("api/login")]
     public class LoginController : Controller
     {
-        private Client.Client client;
+        private IClient client;
         public LoginController(IClient _client)
         {
-            client = (Client.Client)_client;
+            client = _client;
         }
 
         // POST api/values
