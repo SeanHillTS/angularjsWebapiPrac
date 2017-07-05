@@ -15,7 +15,7 @@ namespace angularjsWebapiSean.Client
         Task<List<ProjectModel>> getProjects(String token);
         Task<bool> updateProject(ProjectModel proj, String token);
         Task<bool> deleteProject(int pk, String token);
-        Task<String> createProject(ProjectCreateModel project, String token);
+        Task<ProjectModel> createProject(ProjectCreateModel project, String token);
     }
 
     public class Client : IClient
@@ -140,7 +140,7 @@ namespace angularjsWebapiSean.Client
 
         }
 
-        public async Task<String> createProject(ProjectCreateModel project, String token)
+        public async Task<ProjectModel> createProject(ProjectCreateModel project, String token)
         {
             Uri uri = new Uri(projectsUri + projectsExt);
             try
@@ -154,8 +154,12 @@ namespace angularjsWebapiSean.Client
                 if (httpResponse.Content != null)
                 {
                     var responseContent = await httpResponse.Content.ReadAsStringAsync();
-                    //var response = new JavaScriptSerializer().Deserialize<ProjectModel>(responseContent);
-                    return responseContent;
+
+                    if (responseContent == "{\"detail\":\"No such user\"}")
+                        throw new Exception("Invalid token");
+
+                    var response = JsonConvert.DeserializeObject<ProjectModel>(responseContent);
+                    return response;
                 }
                 else throw new Exception("No response");
 

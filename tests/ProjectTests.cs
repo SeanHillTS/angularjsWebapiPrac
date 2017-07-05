@@ -17,23 +17,41 @@ namespace tests
         [TestMethod]
         public async Task ShouldCreate()
         {
+            try { 
             var result = await controller.CreateProject(new angularjsWebapiSean.Models.ProjectCreateModel(), "faketoken");
-            Assert.IsTrue(result == "True");
+            Assert.IsNotNull(result);
+            }
+            catch (Exception e)
+            {
+                Assert.Fail("Should not throw exception - " + e.Message);
+            }
         }
 
         [TestMethod]
         public async Task ShouldGetProjects()
         {
+            try { 
             var result = await controller.Get("faketoken");
             Assert.IsTrue(result.Count == 1);
+            }
+            catch (Exception e)
+            {
+                Assert.Fail("Should not throw exception - " + e.Message);
+            }
         }
 
         [TestMethod]
         public async Task ShouldUpdateProject()
         {
+            try { 
             var result = await controller.Edit(new angularjsWebapiSean.Models.ProjectModel(), "faketoken");
             Assert.IsTrue(result);
-        }
+            }
+            catch (Exception e)
+            {
+                Assert.Fail("Should not throw exception - " + e.Message);
+            }
+}
 
         [TestMethod]
         public async Task ShouldDeleteProject()

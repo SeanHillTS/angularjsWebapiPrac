@@ -55,9 +55,9 @@ namespace tests
 
         }
 
-        public async Task<String> createProject(ProjectCreateModel project, String token)
+        public async Task<ProjectModel> createProject(ProjectCreateModel project, String token)
         {
-            return "True";
+            return new ProjectModel();
 
         }
     }

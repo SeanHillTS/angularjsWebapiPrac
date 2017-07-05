@@ -60,7 +60,7 @@ namespace angularjsWebapiSean.Controllers
         }
         [Route("create")]
         [HttpPost]
-        public async Task<String> CreateProject(ProjectCreateModel project, String token)
+        public async Task<ProjectModel> CreateProject(ProjectCreateModel project, String token)
         {
             try
             {
