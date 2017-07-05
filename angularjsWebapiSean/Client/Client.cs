@@ -12,10 +12,10 @@ namespace angularjsWebapiSean.Client
     public interface IClient
     {
         Task<string> getToken(LoginModel user);
-        Task<List<ProjectModel>> getProjects();
-        Task<bool> updateProject(ProjectModel proj);
-        Task<bool> deleteProject(int pk);
-        Task<String> createProject(ProjectCreateModel project);
+        Task<List<ProjectModel>> getProjects(String token);
+        Task<bool> updateProject(ProjectModel proj, String token);
+        Task<bool> deleteProject(int pk, String token);
+        Task<String> createProject(ProjectCreateModel project, String token);
     }
 
     public class Client : IClient
@@ -26,7 +26,6 @@ namespace angularjsWebapiSean.Client
         private String tokenExt = "api-token-auth/";
         private String projectsExt = "api/v1/projects/";
         protected HttpClient client { get; private set; } = new HttpClient();
-        private String token = null;
         public Client()
         {
 
@@ -35,10 +34,7 @@ namespace angularjsWebapiSean.Client
         public async Task<string> getToken(LoginModel user)
         {
 
-            if (this.token != null)
-            {
-                return this.token;
-            }
+            
             Uri uri = new Uri(usersUri + tokenExt);
             try
             {
@@ -52,8 +48,7 @@ namespace angularjsWebapiSean.Client
                 {
                     var responseContent = await httpResponse.Content.ReadAsStringAsync();
                     var response = JsonConvert.DeserializeObject<TokenModel>(responseContent);
-                    this.token = response.token;
-                    return this.token;
+                    return response.token;
                 }
                 else throw new Exception("No response");
 
@@ -66,7 +61,7 @@ namespace angularjsWebapiSean.Client
         }
 
 
-        public async Task<List<ProjectModel>> getProjects()
+        public async Task<List<ProjectModel>> getProjects(String token)
         {
 
 
@@ -98,7 +93,7 @@ namespace angularjsWebapiSean.Client
         }
 
 
-        public async Task<bool> updateProject( ProjectModel proj)
+        public async Task<bool> updateProject( ProjectModel proj, String token)
         {
 
 
@@ -122,7 +117,7 @@ namespace angularjsWebapiSean.Client
 
         }
 
-        public async Task<bool> deleteProject(int pk)
+        public async Task<bool> deleteProject(int pk, String token)
         {
 
 
@@ -145,7 +140,7 @@ namespace angularjsWebapiSean.Client
 
         }
 
-        public async Task<String> createProject(ProjectCreateModel project)
+        public async Task<String> createProject(ProjectCreateModel project, String token)
         {
             Uri uri = new Uri(projectsUri + projectsExt);
             try

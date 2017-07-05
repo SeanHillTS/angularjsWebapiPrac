@@ -17,5 +17,11 @@ namespace tests
             var result = await controller.Post("jacob.zuma", "tangent");
             Assert.IsTrue(result);
         }
+        [TestMethod]
+        public async Task ShouldFailLoginWithBadDetails()
+        {
+            var result = await controller.Post("jacob.zumba", "tangent");
+            Assert.IsFalse(result);
+        }
     }
 }
