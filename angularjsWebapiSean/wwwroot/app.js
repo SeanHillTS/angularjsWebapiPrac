@@ -1,0 +1,1 @@
+!function(){"use strict";angular.module("app",["ngRoute"])}(),function(){"use strict";angular.module("app",["ngResource"]).factory("Heroes",["$resource",function(a){return a("/api/login",{},{query:{method:"GET",params:{},isArray:!0}})}])}();

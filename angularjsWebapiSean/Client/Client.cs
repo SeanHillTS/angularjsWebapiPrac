@@ -76,11 +76,18 @@ namespace angularjsWebapiSean.Client
 
                 if (httpResponse.Content != null)
                 {
-                    var responseContent = await httpResponse.Content.ReadAsStringAsync();
-                    var response = JsonConvert.DeserializeObject<List<ProjectModel>>(responseContent);
-
-
-                    return response;
+                    var responseContent = "";
+                    try
+                    {
+                        responseContent = await httpResponse.Content.ReadAsStringAsync();
+                        var response = JsonConvert.DeserializeObject<List<ProjectModel>>(responseContent);
+                        return response;
+                    }
+                    catch(Exception e)
+                    {
+                        throw new Exception(responseContent);
+                    }
+                    
                 }
                 else throw new Exception("No response");
 

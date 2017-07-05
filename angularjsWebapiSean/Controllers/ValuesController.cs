@@ -25,7 +25,7 @@ namespace angularjsWebapiSean.Controllers
                 username = "jacob.zuma",
                 password = "tangent"
             };
-            String token = await client.getToken(login);
+            //String token = await client.getToken(login);
             return new string[] { "value1", "value2" };
         }
 
