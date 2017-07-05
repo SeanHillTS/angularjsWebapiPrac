@@ -15,7 +15,7 @@ namespace tests
         private static ProjectsController controller = new ProjectsController((IClient)testClient);
 
         [TestMethod]
-        public async Task ShouldCreate()
+        public async Task ShouldCallCreate()
         {
             try { 
             var result = await controller.CreateProject(new angularjsWebapiSean.Models.ProjectCreateModel(), "faketoken");
@@ -28,7 +28,7 @@ namespace tests
         }
 
         [TestMethod]
-        public async Task ShouldGetProjects()
+        public async Task ShouldCallGetProjects()
         {
             try { 
             var result = await controller.Get("faketoken");
@@ -41,7 +41,7 @@ namespace tests
         }
 
         [TestMethod]
-        public async Task ShouldUpdateProject()
+        public async Task ShouldCallUpdateProject()
         {
             try { 
             var result = await controller.Edit(new angularjsWebapiSean.Models.ProjectModel(), "faketoken");
@@ -54,7 +54,7 @@ namespace tests
 }
 
         [TestMethod]
-        public async Task ShouldDeleteProject()
+        public async Task ShouldCallDeleteProject()
         {
             try { 
             var result = await controller.DeleteProject(1, "faketoken");

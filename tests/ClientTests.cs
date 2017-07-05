@@ -3,13 +3,16 @@ using angularjsWebapiSean.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Threading.Tasks;
+using Moq;
+using System.Collections.Generic;
 
 namespace tests
 {
     [TestClass]
     public class ClientTests
     {
-        //Unit Tests
+
+        List<int> created = new List<int>();
         Client client = new Client();
         String token = "46d2ab1b9fdb092f803fc83e16bf001292d98fa5";
 
@@ -36,33 +39,14 @@ namespace tests
         [TestMethod]
         public async Task ShouldNotGetProjects()
         {
-            var result = await client.getProjects("faketoken");
 
-            Assert.IsFalse(result.Count > 0);
-        }
-
-        [TestMethod]
-        public async Task ShouldCreateProject()
-        {
-            try
-            {
-                var result = await client.createProject(new ProjectCreateModel()
+                await Assert.ThrowsExceptionAsync<Exception>(async() =>
                 {
-                    description = "test",
-                    title = "test",
-                    end_date = "2017-11-24",
-                    start_date = "2017-11-24",
-                    is_active = false,
-                    is_billable = false
-                }, token);
-
-                Assert.IsNotNull(result);
-            }
-            catch (Exception e)
-            {
-                Assert.Fail("Should not throw exception - " + e.Message);
-            }
+                    await client.getProjects("faketoken");
+                });
+                
         }
+
 
         [TestMethod]
         public async Task ShouldNotCreateProject()
@@ -80,6 +64,7 @@ namespace tests
                 }, "faketoken");
 
                 Assert.IsNull(result);
+                
             }
             catch (Exception e)
             {
@@ -87,5 +72,56 @@ namespace tests
             }
         }
 
+        //These mess with data, need to mock some HttpClient
+
+        //[TestMethod]
+        //public async Task ShouldCreateProject()
+        //{
+        //    try
+        //    {
+        //        var result = await client.createProject(new ProjectCreateModel()
+        //        {
+        //            description = "test",
+        //            title = "test",
+        //            end_date = "2017-11-24",
+        //            start_date = "2017-11-24",
+        //            is_active = false,
+        //            is_billable = false
+        //        }, token);
+
+        //        Assert.IsNotNull(result);
+        //        created.Add(result.pk);
+        //        //var delete = await client.deleteProject(result.pk, token);
+        //        //Console.WriteLine(delete);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Assert.Fail("Should not throw exception - " + e.Message);
+        //    }
+        //}
+
+
+        //[TestMethod]
+        //public async Task ShouldDeleteProject()
+        //{
+        //    try { 
+        //    if(created.Count > 0)
+        //    {
+        //        var result = await client.deleteProject(created[0], token);
+
+        //    }
+        //    }
+        //    catch(Exception e)
+        //    {
+        //        Assert.Fail("Should not throw exception - " + e.Message);
+        //    }
+        //}
+
+
+        //Task<bool> updateProject(ProjectModel proj, String token);
+        //Task<bool> deleteProject(int pk, String token);
+
     }
+
+
 }
