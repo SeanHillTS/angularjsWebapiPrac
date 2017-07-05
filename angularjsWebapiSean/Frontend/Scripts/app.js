@@ -1,13 +1,24 @@
-﻿(function () {
-    'use strict';
+﻿
+var app = angular.module('MyApp', ['ngRoute']);
 
-    angular.module('app', [
-        // Angular modules 
-        'ngRoute'
+app.config(['$routeProvider', '$locationProvider', function AppConfig($routeProvider, $locationProvider) {
 
-        // Custom modules 
+    $routeProvider
+        .when('/', {
+            templateUrl: "html/login.html",
+            controller: "loginCtrl"
+        })
+        .when('/login', {
+            templateUrl: "html/login.html",
+            controller: "loginCtrl"
+        })
+        // removed other routes ... *snip
+        .otherwise({
+            redirectTo: '/home'
+        }
+        );
 
-        // 3rd Party Modules
+    // enable html5Mode for pushstate ('#'-less URLs)
+    $locationProvider.html5Mode(true);
 
-    ]);
-})();
+}]);
