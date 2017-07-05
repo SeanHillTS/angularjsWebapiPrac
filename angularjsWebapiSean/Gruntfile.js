@@ -2,6 +2,7 @@
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-minify-html');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
 
     grunt.initConfig({
         uglify: {
@@ -29,6 +30,17 @@
                 dest: 'wwwroot/html/',
                 expand: true,
                 flatten: true
+            }
+        },
+        cssmin: {
+            options: {
+                mergeIntoShorthands: false,
+                roundingPrecision: -1
+            },
+            target: {
+                files: {
+                    'wwwroot/style.css': ['Frontend/Styles/**/*.css']
+                }
             }
         }
     });

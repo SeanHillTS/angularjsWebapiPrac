@@ -17,7 +17,7 @@ namespace tests
         public async Task ShouldCallGetToken()
         {
             var result = await controller.Post("any", "any");
-            Assert.IsTrue(result);
+            Assert.IsNotNull(result);
         }
         
     }

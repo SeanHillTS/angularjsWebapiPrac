@@ -21,7 +21,7 @@ namespace angularjsWebapiSean.Controllers
 
         // POST api/values
         [HttpPost]
-        public async Task<bool> Post([FromBody]string username, [FromBody]string password)
+        public async Task<String> Post(string username, string password)
         {
             LoginModel login = new LoginModel()
             {
@@ -29,18 +29,14 @@ namespace angularjsWebapiSean.Controllers
                 password = password
             };
             try { 
-                String token = await client.getToken(login);
-                if(token != null)
-                {
-                    return true;
-                }
+                return await client.getToken(login);
             }
             catch(Exception e)
             {
                 Console.WriteLine(e.Message);
-                return false;
+                return null;
             }
-            return false;
+            return null;
         }
     }
 }
