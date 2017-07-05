@@ -1,24 +1,27 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using angularjsWebapiSean.Client;
+using angularjsWebapiSean.Models;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace tests
 {
     [TestClass]
-    class ClientTests
+    public class ClientTests
     {
-        //[TestMethod]
-        //public async Task ShouldLoginWithCorrectDetails()
-        //{
-        //    var result = await controller.Post("jacob.zuma", "tangent");
-        //    Assert.IsTrue(result);
-        //}
-        //[TestMethod]
-        //public async Task ShouldFailLoginWithBadDetails()
-        //{
-        //    var result = await controller.Post("jacob.zumba", "tangent");
-        //    Assert.IsFalse(result);
-        //}
+        //Unit Tests
+        Client client = new Client();
+        [TestMethod]
+        public async Task ShouldGetToken()
+        {
+            var result = await client.getToken(new LoginModel() { username = "jacob.zuma", password = "tangent" });
+            Assert.IsNotNull(result);
+        }
+        [TestMethod]
+        public async Task ShouldNotGetToken()
+        {
+            var result = await client.getToken(new LoginModel(){ username = "jacob.zumba", password = "tangent"});
+            Assert.IsNull(result);
+        }
     }
 }
