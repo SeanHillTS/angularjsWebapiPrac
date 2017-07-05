@@ -2,6 +2,7 @@
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-minify-html');
+
     grunt.initConfig({
         uglify: {
             options: {
@@ -15,7 +16,7 @@
 
         watch: {
             scripts: {
-                files: ['Scripts/**/*.js'],
+                files: ['Frontend/Scripts/**/*.js', 'Frontend/Html/*.html'],
                 tasks: ['uglify']
             }
         },

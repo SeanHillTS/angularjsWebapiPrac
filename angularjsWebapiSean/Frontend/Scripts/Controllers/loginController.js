@@ -1,7 +1,6 @@
 ﻿
 
-angular.module('MyApp', []).controller('loginCtrl', function ($scope) {
-    $scope.title = 'Login';
-    console.log("hellooo");
+app.controller('loginCtrl', function ($scope) {
+    $scope.title = 'Login werk nie';
 });
 

@@ -1,10 +1,22 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <base href="/"/>
     <meta charset="utf-8" />
-    <title></title>
+    <title>Tangent Solutions Demo</title>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.js"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-resource.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" />
+    <script src="app.js"></script>
 </head>
-<body>
-    Hello World
+<body ng-app="MyApp">>
+    <div ng-controller="loginCtrl">
+        
+    <div ng-view=""></div>
 </body>
-</html>
+</html> 

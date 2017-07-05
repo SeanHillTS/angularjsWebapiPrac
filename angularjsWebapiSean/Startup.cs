@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using angularjsWebapiSean.Client;
+using System.IO;
 
 namespace angularjsWebapiSean
 {
@@ -38,9 +39,19 @@ namespace angularjsWebapiSean
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+
+            app.UseStatusCodePagesWithReExecute("/");
+
             app.UseDefaultFiles();
             app.UseStaticFiles();
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}"
+                );
+            });
         }
     }
 }

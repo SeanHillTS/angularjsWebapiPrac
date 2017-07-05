@@ -14,8 +14,7 @@ namespace angularjsWebapiSean
         {
             var host = new WebHostBuilder()
                 .UseKestrel()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseWebRoot(Directory.GetCurrentDirectory() + "/wwwroot")
+                .UseContentRoot(Directory.GetCurrentDirectory())            
                 .UseIISIntegration()
                 .UseStartup<Startup>()
                 .UseApplicationInsights()
