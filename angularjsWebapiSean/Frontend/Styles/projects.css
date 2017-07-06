@@ -20,6 +20,10 @@
 visibility: hidden;
 }
 
+.selectedRow {
+    background-color: coral;
+}
+
 .clickableRow:hover {
     background-color: orange;
     transition: background-color 0.5s ease;
