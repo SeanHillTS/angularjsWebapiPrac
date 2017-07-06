@@ -18,7 +18,7 @@ namespace tests
 
         public async Task<string> getToken(LoginModel user)
         {
-            return "True";
+            return "46d2ab1b9fdb092f803fc83e16bf001292d98fa5";
 
         }
 
