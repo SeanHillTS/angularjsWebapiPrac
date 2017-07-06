@@ -16,15 +16,88 @@
             <tbody id="projectTableBody" class="blackBorder">
 
                
-                <tr ng-repeat="project in projects"  onclick="">
-                    <td id="projectTitle_@objUser.pk" dataTitle="Title">{{project.title}}</td>
-                    <td id="projectDescription_@objUser.pk" dataTitle="Description">{{project.description}}</td>
-                    <td id="projectStartDate_@objUser.pk" dataTitle="Start Date">{{project.start_date}}</td>
-                    <td id="projectEndDate_@objUser.pk" dataTitle="End Date">{{projectend_date}}</td>
-                    <td id="projectIsBillable_@objUser.pk" dataTitle="Is Billable">{{project.is_billable}}</td>
-                    <td id="projectIsActive_@objUser.pk" dataTitle="Is Active">{{project.is_active}}</td>
+                <tr ng-repeat="project in projects" class="clickableRow"  ng-dblclick="editToggle(project.pk)">
+                    <td>
+                    <span ng-if="selectedPk == project.pk">
+                        <input class="selectedInput" type="text" ng-model="project.title" />
+                    </span>
+                    <span ng-if="selectedPk != project.pk">
+                        {{project.title}}
+                    </span>
+                    </td>
+                    <td>
+                        <span ng-if="selectedPk == project.pk">
+                            <input class="selectedInput" type="text" ng-model="project.description" />
+                        </span>
+                        <span ng-if="selectedPk != project.pk">
+                            {{project.description}}
+                        </span>
+                    </td>
+                    <td>
+                        <span ng-if="selectedPk == project.pk">
+                            <input class="selectedInput" type="text" ng-model="project.start_date" />
+                        </span>
+                        <span ng-if="selectedPk != project.pk">
+                            {{project.start_date}}
+                        </span>
+                    </td>
+                    <td>
+                        <span ng-if="selectedPk == project.pk">
+                            <input class="selectedInput" type="text" ng-model="project.end_date" />
+                        </span>
+                        <span ng-if="selectedPk != project.pk">
+                            {{project.end_date}}
+                        </span>
+                    </td>
+                    <td>
+                        <span ng-if="selectedPk == project.pk">
+                            <input class="selectedInput" type="text" ng-model="project.is_billable" />
+                        </span>
+                        <span ng-if="selectedPk != project.pk">
+                            {{project.is_billable}}
+                        </span>
+                    </td>
+                    <td>
+                        <span ng-if="selectedPk == project.pk">
+                            <input class="selectedInput" type="text" ng-model="project.is_active" />
+                        </span>
+                        <span ng-if="selectedPk != project.pk">
+                            {{project.is_active}}
+                        </span>
+                    </td>
                 </tr>
-                
+                <tr class="hidden">
+                    <td>
+                        <span>
+                            <input class="selectedInput" type="text" ng-model="project.title" />
+                        </span>
+                        </td>
+                    <td>
+                        <span >
+                            <input class="selectedInput" type="text" ng-model="project.description" />
+                        </span>
+                    </td>
+                    <td>
+                        <span >
+                            <input class="selectedInput" type="text" ng-model="project.start_date" />
+                        </span>
+                    </td>
+                    <td>
+                        <span >
+                            <input class="selectedInput" type="text" ng-model="project.end_date" />
+                        </span>
+                    </td>
+                    <td>
+                        <span >
+                            <input class="selectedInput" type="text"  />
+                        </span>
+                    </td>
+                    <td>
+                        <span>
+                            <input class="selectedInput" type="text"  />
+                        </span>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
