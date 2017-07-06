@@ -1,21 +1,40 @@
-﻿app.factory('ProjectsService', function ($http, $q) {
+﻿app.factory('ProjectsService', function ($http, $q, $window) {
     projectsFunctions = {};
- 
-    projectsFunctions.getProjects = function (token) {
+
+   
+    projectsFunctions.getProjects = function () {
         return $q(function (resolve, reject) {
 
-            resolve(mockProjects);
+            //resolve(mockProjects);
 
-            //$http.get('api/projects/get?token=' + token).then(function (res) {
-            //    console.log(res);
-            //        resolve(res.data);
+            $http.get('api/projects/get?token=' + $window.sessionStorage.getItem("token")).then(function (res) {
+                console.log(res);
+                    resolve(res.data);
                
-            //},
-            //    function (err) {
-            //        reject(err);
-            //    }
+            },
+                function (err) {
+                    reject(err);
+                }
 
-            //);
+            );
+        });
+    }
+
+    projectsFunctions.deleteproject = function (current) {
+        return $q(function (resolve, reject) {
+
+            //resolve(mockProjects);
+
+            $http.post('api/projects/delete?pk?=' + current + '&token=' + $window.sessionStorage.getItem("token")).then(function (res) {
+                console.log(res);
+                resolve(res.data);
+
+            },
+                function (err) {
+                    reject(err);
+                }
+
+            );
         });
     }
 
