@@ -7,8 +7,9 @@ app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsSer
 
     
     var token = $window.sessionStorage.getItem("token");
-    if (!token) {
+    if (token == null) {
         $location.url('/login');
+        return;
     }
     ProjectsService.getProjects(token).then(function (res) {
         console.log(res);
