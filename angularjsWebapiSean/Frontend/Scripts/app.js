@@ -8,13 +8,17 @@ app.config(['$routeProvider', '$locationProvider', function AppConfig($routeProv
             templateUrl: "html/login.html",
             controller: "loginCtrl"
         })
+        .when('/login', {
+            templateUrl: "html/login.html",
+            controller: "loginCtrl"
+        })
         .when('/projects', {
             templateUrl: "html/projects.html",
             controller: "projectsCtrl"
         })
         // removed other routes ... *snip
         .otherwise({
-            redirectTo: '/home'
+            redirectTo: '/projects'
         }
         );
 
