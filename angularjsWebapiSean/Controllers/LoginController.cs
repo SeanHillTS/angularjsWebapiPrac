@@ -23,6 +23,7 @@ namespace angularjsWebapiSean.Controllers
         [HttpPost]
         public async Task<String> Post(string username, string password)
         {
+                
             LoginModel login = new LoginModel()
             {
                 username = username,
