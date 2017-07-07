@@ -42,7 +42,7 @@
 
                 //resolve(mockProjects);
 
-                $http.post('api/projects/delete?pk?=' + current + '&token=' + $window.sessionStorage.getItem("token")).then(function (res) {
+                $http.post('api/projects/create?token=' + $window.sessionStorage.getItem("token"), project).then(function (res) {
                     console.log(res);
                     resolve(res.data);
 

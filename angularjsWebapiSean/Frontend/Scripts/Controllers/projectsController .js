@@ -12,7 +12,7 @@ app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsSer
     $scope.selectedPk = -1;
 
     $scope.state = 0;
-
+    $scope.newProject = {};
    
     $scope.editingProject = false;
 
@@ -60,6 +60,17 @@ app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsSer
         else if ($scope.state == 3) {
             $scope.state = 0;
         }
+    }
+
+    $scope.createProject = function () {
+        console.log($scope.newProject);
+        ProjectsService.createProject($scope.newProject).then(function (res) {
+            console.log(res);
+        },
+            function (err) {
+                console.log(err);
+            }
+        );
     }
 
     $scope.editToggle = function () {
