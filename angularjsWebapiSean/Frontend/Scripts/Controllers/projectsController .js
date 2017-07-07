@@ -123,6 +123,15 @@ app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsSer
 
         ProjectsService.updateProject($scope.editingProject).then(function (res) {
             console.log(res);
+            if (res == true) {
+                //edit model
+                for (var i = 0; i < $scope.projects.length; i++) {
+                    if ($scope.projects[i].pk == $scope.editPk) {
+                        $scope.projects[i] = $scope.editingProject;
+                    }
+                }
+                $scope.editPk = -1;
+            }
             $scope.state = 0;
 
         },
