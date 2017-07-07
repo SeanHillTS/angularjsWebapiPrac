@@ -104,3 +104,9 @@ visibility: hidden;
             content: attr(dataTitle);
         }
 }
+
+
+.centerText{
+    display: block;
+    text-align: center;
+}

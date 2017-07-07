@@ -12,7 +12,14 @@ app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsSer
     $scope.selectedPk = -1;
 
     $scope.state = 0;
-    $scope.newProject = {};
+    $scope.newProject = {
+        title: 'title',
+        description: 'description',
+        start_date: new Date(),
+        end_date: new Date(),
+        is_billable: false,
+        is_active: false
+    };
    
     $scope.editingProject = false;
 
@@ -63,7 +70,8 @@ app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsSer
     }
 
     $scope.createProject = function () {
-        console.log($scope.newProject);
+
+       
         ProjectsService.createProject($scope.newProject).then(function (res) {
             console.log(res);
         },
@@ -97,6 +105,8 @@ app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsSer
        $scope.selectedPk = selected;
           
     }
+
+
     
 
 });
