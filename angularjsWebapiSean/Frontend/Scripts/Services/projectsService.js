@@ -20,13 +20,12 @@
         });
     }
 
-    projectsFunctions.deleteproject = function (current, token) {
+    projectsFunctions.deleteProject = function (current, token) {
         return $q(function (resolve, reject) {
 
             //resolve(mockProjects);
 
-            $http.post('api/projects/delete?pk?=' + current + '&token=' + $window.sessionStorage.getItem("token")).then(function (res) {
-                console.log(res);
+            $http.post('api/projects/delete?pk=' + current + '&token=' + $window.sessionStorage.getItem("token")).then(function (res) {
                 resolve(res.data);
 
             },

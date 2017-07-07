@@ -102,11 +102,20 @@
             </tbody>
         </table>
     </div>
-    <button class="btn btn-primary" ng-click="deleteProject()">Delete</button>
-    <button ng-if="!addingProject" class="btn btn-primary" ng-click="toggleNew()">New Record</button>
-    <button ng-if="addingProject" class="btn btn-primary" ng-click="toggleNew()">Cancel</button>
-    <button ng-if="addingProject" class="btn btn-primary" ng-click="saveProject()">Save</button>
+    <div class="container">
+        <button class="btn btn-primary" ng-click="deleteProject()">Delete</button>
 
+        <button class="btn btn-primary" ng-click="editToggle()">
+            <span ng-if="editPk == -1">Edit</span>
+            <span ng-if="editPk != -1">Cancel</span>
+        </button>
+        <button ng-if="editPk != -1" class="btn btn-primary" ng-click="saveEdit()">Save</button>
+
+        <button ng-if="!addingProject" class="btn btn-primary" ng-click="toggleNew()">New Record</button>
+        <button ng-if="addingProject" class="btn btn-primary" ng-click="toggleNew()">Cancel</button>
+        <button ng-if="addingProject" class="btn btn-primary" ng-click="saveProject()">Save</button>
+        
+    </div>
     <div id="tasksContainer">
 
     </div>

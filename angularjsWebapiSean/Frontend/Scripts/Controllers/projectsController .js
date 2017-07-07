@@ -7,6 +7,7 @@ app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsSer
     $scope.editPk = -1;
     $scope.selectedPk = -1;
     $scope.addingProject = false;
+    $scope.editingProject = false;
 
     var token = $window.sessionStorage.getItem("token");
     if (token == null) {
@@ -21,9 +22,15 @@ app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsSer
 
     $scope.deleteProject = function(){
         console.log("delete called");
-        ProjectsService.deleteProject(selectedPk, token).then(function (res) {
+        ProjectsService.deleteProject($scope.selectedPk, token).then(function (res) {
             console.log(res);
-            $scope.projects = res;
+            //if true remove the project with selectedPk as pk
+            if(res == true){
+                $scope.projects = $scope.projects.filter(function (obj) {
+                return obj.pk !== $scope.selectedPk;
+                });
+            $scope.selectedPk = -1;
+            }
         });
     }
 
@@ -31,17 +38,22 @@ app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsSer
         $scope.addingProject = !$scope.addingProject;
     }
 
-    //$scope.editToggle = function (selected) {
+    $scope.editToggle = function () {
 
-    //    console.log("call editToggle ", selected);
-    //    //Actually need a save(maybe)
-    //    if ($scope.editPk == selected) {
-    //        $scope.editPk = -1;
-    //    }
-    //    else {
-    //        $scope.editPk = selected;
-    //    }
-    //}
+        console.log("call editToggle ");
+        //Actually need a save(maybe)
+        if ($scope.editPk == $scope.selectedPk) {
+            $scope.editPk = -1;
+        }
+        else {
+            $scope.editPk = $scope.selectedPk;
+        }
+    }
+
+    $scope.saveEdit = function () {
+
+    }
+
     $scope.selectToggle = function (selected) {
 
        $scope.selectedPk = selected;
