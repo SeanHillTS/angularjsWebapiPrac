@@ -12,6 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Frontend\index.html">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
     <Content Include="index.html" />
     <Content Include="wwwroot\web.config" />
   </ItemGroup>

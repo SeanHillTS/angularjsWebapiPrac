@@ -1,7 +1,7 @@
 ﻿<div ng-controller="projectsCtrl">
     <div>
 
-        <table id="cardTable"  class="col-md-10 col-md-offset-1 table-borderedtable-condensed projectsTable cf">
+        <table  class="col-md-10 col-md-offset-1 table-borderedtable-condensed projectsTable">
             <thead class="cf">
             <thead class="blackBorder">
                 <tr>
@@ -16,7 +16,7 @@
             <tbody id="projectTableBody" class="blackBorder">
 
                
-                <tr ng-repeat="project in projects" class="clickableRow" ng-class="{'selectedRow': selectedPk==project.pk && state == 0}" ng-click="selectToggle(project.pk)"  ng-dblclick="editToggle(project.pk)">
+                <tr ng-repeat="project in projects" class="clickableRow" ng-class="{'selectedRow': selectedPk==project.pk && (state == 0|| state == 2)}" ng-click="selectToggle(project.pk)"  >
                     <td>
                     <span ng-if="editPk == project.pk">
                         <input class="selectedInput" type="text" ng-model="editingProject.title" />
@@ -50,7 +50,7 @@
                         </span>
                     </td>
                     <td>
-                        <span ng-if="editPk == project.pk">
+                        <span ng-if="editPk == project.pk"  class="centerText">
                             <input type="checkbox" ng-model="editingProject.is_billable" />
                         </span>
                         <span ng-if="editPk != project.pk">
@@ -58,7 +58,7 @@
                         </span>
                     </td>
                     <td>
-                        <span ng-if="editPk == project.pk">
+                        <span ng-if="editPk == project.pk"  class="centerText">
                             <input type="checkbox" ng-model="editingProject.is_active" />
                         </span>
                         <span ng-if="editPk != project.pk">
@@ -123,11 +123,11 @@
         <button ng-if="state == 3" class="btn btn-primary" ng-click="createProject()">Save New</button>
         
     </div>
-    <div id="tasksContainer">
-        <table class='col-md-12 table-bordered table-striped table-condensed cf'>
+    <div id="container" ng-if="selected.task_set.length > 0">
+        <table  class="col-md-10 col-md-offset-1 table-bordered table-condensed taskTable">
             
             
-            <thead class="cf">  
+            <thead class="taskTableHead">  
                 <tr>
                     <th>Title</th>
                     <th>Due Date</th>
@@ -144,4 +144,7 @@
             </tbody>
             </table>
     </div>
-</div>
+    <div id="container" class="col-md-10 col-md-offset-1" ng-if="selected.task_set.length == 0">
+            This project has no tasks
+    </div>
+    </div>

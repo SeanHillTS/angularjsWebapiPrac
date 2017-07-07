@@ -15,12 +15,24 @@
             
         },
 
-        watch: {
+        watch:{
+            options: {
+                livereload: true,
+            },
+            css: {
+                files: ['Frontend/Styles/**/*.css'],
+                tasks: ['cssmin']
+            },
+            html: {
+                files: ['Frontend/ Html/*.html'],
+                tasks: ['minifyHtml']
+            },
             scripts: {
-                files: ['Frontend/Scripts/**/*.js', 'Frontend/Html/*.html'],
-                tasks: ['uglify']
-            }
-        },
+                    files: ['Frontend/Scripts/**/*.js', ],
+                    tasks: ['uglify']
+                }
+        
+        },   
         minifyHtml:
         {
             //## minifyHtml task configuration goes here ##
@@ -30,6 +42,12 @@
                 dest: 'wwwroot/html/',
                 expand: true,
                 flatten: true
+            },
+            Html: {
+                src: ['Frontend/index.html'],
+                dest: 'wwwroot/',
+                expand: true,
+                flatten: false
             }
         },
         cssmin: {
