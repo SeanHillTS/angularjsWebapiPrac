@@ -42,13 +42,14 @@
                 dest: 'wwwroot/html/',
                 expand: true,
                 flatten: true
-            },
-            Html: {
-                src: ['Frontend/index.html'],
-                dest: 'wwwroot/',
-                expand: true,
-                flatten: false
             }
+            ,
+            //Html: {
+            //    src: ['Frontend/index.html'],
+            //    dest: 'wwwroot/index.html',
+            //    expand: true,
+            //    flatten: false
+            //}
         },
         cssmin: {
             options: {

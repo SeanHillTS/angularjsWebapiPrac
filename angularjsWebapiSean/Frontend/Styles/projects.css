@@ -10,6 +10,7 @@
     max-height: 420px;
     overflow-y: scroll;
     background-color: rgba(255,255,255,0.7);
+    width: 85%;
 }
 
 .projectsTable > thead {
@@ -63,6 +64,7 @@ visibility: hidden;
 }
 
 .taskTable {
+    width: 85%;
     margin-top: 20px;
     background-color: whitesmoke;
 }
@@ -73,4 +75,10 @@ visibility: hidden;
     background-color: white;
     display: block;
     text-align: center;
+}
+
+.centerContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }

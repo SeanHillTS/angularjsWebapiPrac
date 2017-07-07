@@ -1,8 +1,8 @@
 ﻿<!--Projects page template-->
-<div ng-controller="projectsCtrl">
-    <div>
+<div ng-controller="projectsCtrl" ng-if="projects != null">
+    <div class="centerContainer">
         <!--Projects Table-->
-        <table  class="col-md-10 col-md-offset-1 table-borderedtable-condensed projectsTable">
+        <table  class="table-borderedtable-condensed projectsTable">
             <thead class="cf">
             <thead class="blackBorder">
                 <tr>
@@ -126,8 +126,8 @@
         
     </div>
     <!--Task set container-->
-    <div id="container" ng-if="selected.task_set.length > 0">
-        <table  class="col-md-10 col-md-offset-1 table-bordered table-condensed taskTable">
+    <div class="centerContainer" ng-if="selected.task_set.length > 0">
+        <table  class="table-bordered table-condensed taskTable">
             
             
             <thead class="taskTableHead">  

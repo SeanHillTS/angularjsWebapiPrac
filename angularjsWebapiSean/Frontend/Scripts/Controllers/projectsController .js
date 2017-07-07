@@ -8,7 +8,7 @@
 app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsService) {
     $scope.title = 'Projects come here';
 
-    $scope.projects = {};
+    $scope.projects = null;
     $scope.editPk = -1;
     $scope.selectedPk = -1;
     $scope.selected = {};
