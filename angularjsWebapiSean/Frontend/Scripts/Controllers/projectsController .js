@@ -1,4 +1,8 @@
-﻿
+﻿//States:
+//0: viewing
+//1: editing
+//2: deleting
+//3: creating
 
 app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsService) {
     $scope.title = 'Projects come here';
@@ -6,9 +10,11 @@ app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsSer
     $scope.projects = {};
     $scope.editPk = -1;
     $scope.selectedPk = -1;
+
+    $scope.state = 0;
+
     $scope.addingProject = false;
     $scope.editingProject = false;
-    $scope.deletingProject = false;
 
     var token = $window.sessionStorage.getItem("token");
     if (token == null) {
@@ -21,8 +27,14 @@ app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsSer
     });
 
     //Toggle the delete buttons
-    $scope.deleteToggle = function(){
-        $scope.deletingProject = !$scope.deletingProject;
+    $scope.deleteToggle = function () {
+        if ($scope.state == 0)
+        {
+            $scope.state = 2;
+        }
+        else if ($scope.state == 2) {
+            $scope.state = 0;
+        }
     }
 
     $scope.deleteProject = function(){
@@ -35,8 +47,8 @@ app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsSer
                 return obj.pk !== $scope.selectedPk;
                 });
                 $scope.selectedPk = -1;
-                //Reset deleting state
-                $scope.deletingProject = false;
+                //Reset to view state
+                $scope.state = 0;
             }
         });
     }
