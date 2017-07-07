@@ -37,7 +37,6 @@ namespace angularjsWebapiSean.Controllers
                 Console.WriteLine(e.Message);
                 return null;
             }
-            return null;
         }
     }
 }

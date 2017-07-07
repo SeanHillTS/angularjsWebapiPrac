@@ -81,10 +81,13 @@ namespace angularjsWebapiSean.Client
                     {
                         responseContent = await httpResponse.Content.ReadAsStringAsync();
                         var response = JsonConvert.DeserializeObject<List<ProjectModel>>(responseContent);
+                        client.DefaultRequestHeaders.Remove("Authorization");
+
                         return response;
                     }
                     catch(Exception e)
                     {
+
                         throw new Exception(responseContent);
                     }
                     
@@ -94,6 +97,7 @@ namespace angularjsWebapiSean.Client
             }
             catch (Exception e)
             {
+                client.DefaultRequestHeaders.Remove("Authorization");
                 throw e;
             }
 
@@ -112,6 +116,7 @@ namespace angularjsWebapiSean.Client
 
                 if (httpResponse.StatusCode == System.Net.HttpStatusCode.OK)
                 {
+                    client.DefaultRequestHeaders.Remove("Authorization");
                     return true;
                 }
                 else throw new Exception("Update Failed");
@@ -119,6 +124,7 @@ namespace angularjsWebapiSean.Client
             }
             catch (Exception e)
             {
+                client.DefaultRequestHeaders.Remove("Authorization");
                 throw e;
             }
 
@@ -135,6 +141,7 @@ namespace angularjsWebapiSean.Client
 
                 if (httpResponse.IsSuccessStatusCode)
                 {
+                    client.DefaultRequestHeaders.Remove("Authorization");
                     return true;
                 }
                 else throw new Exception("Delete Failed");
@@ -142,6 +149,7 @@ namespace angularjsWebapiSean.Client
             }
             catch (Exception e)
             {
+                client.DefaultRequestHeaders.Remove("Authorization");
                 throw e;
             }
 
@@ -166,6 +174,7 @@ namespace angularjsWebapiSean.Client
                         throw new Exception("Invalid token");
 
                     var response = JsonConvert.DeserializeObject<ProjectModel>(responseContent);
+                    client.DefaultRequestHeaders.Remove("Authorization");
                     return response;
                 }
                 else throw new Exception("No response");
@@ -173,6 +182,7 @@ namespace angularjsWebapiSean.Client
             }
             catch (Exception e)
             {
+                client.DefaultRequestHeaders.Remove("Authorization");
                 throw e;
             }
 

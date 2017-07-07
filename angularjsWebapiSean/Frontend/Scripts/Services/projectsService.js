@@ -2,12 +2,12 @@
     projectsFunctions = {};
 
    
-    projectsFunctions.getProjects = function () {
+    projectsFunctions.getProjects = function (token) {
         return $q(function (resolve, reject) {
 
             //resolve(mockProjects);
 
-            $http.get('api/projects/get?token=' + $window.sessionStorage.getItem("token")).then(function (res) {
+            $http.get('api/projects/get?token=' + token).then(function (res) {
                 console.log(res);
                     resolve(res.data);
                
@@ -20,7 +20,7 @@
         });
     }
 
-    projectsFunctions.deleteproject = function (current) {
+    projectsFunctions.deleteproject = function (current, token) {
         return $q(function (resolve, reject) {
 
             //resolve(mockProjects);
@@ -38,8 +38,26 @@
         });
     }
 
-    return projectsFunctions;
+    projectsFunctions.createProject = function (project, token) {
+            return $q(function (resolve, reject) {
 
+                //resolve(mockProjects);
+
+                $http.post('api/projects/delete?pk?=' + current + '&token=' + $window.sessionStorage.getItem("token")).then(function (res) {
+                    console.log(res);
+                    resolve(res.data);
+
+                },
+                    function (err) {
+                        reject(err);
+                    }
+
+                );
+            });
+        }
+
+        return projectsFunctions;
+    
 });
 
 var mockProjects = [

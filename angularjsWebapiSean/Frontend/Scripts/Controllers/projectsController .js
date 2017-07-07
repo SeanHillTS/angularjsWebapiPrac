@@ -21,7 +21,7 @@ app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsSer
 
     $scope.deleteProject = function(){
         console.log("delete called");
-        ProjectsService.deleteProject(selectedPk).then(function (res) {
+        ProjectsService.deleteProject(selectedPk, token).then(function (res) {
             console.log(res);
             $scope.projects = res;
         });
@@ -31,24 +31,23 @@ app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsSer
         $scope.addingProject = !$scope.addingProject;
     }
 
-    $scope.editToggle = function (selected) {
+    //$scope.editToggle = function (selected) {
 
-        console.log("call editToggle ", selected);
-        //Actually need a save(maybe)
-        if ($scope.editPk == selected)
-        {
-            $scope.editPk = -1;
-        }
-        else {
-            $scope.editPk = selected;
-        }
-
+    //    console.log("call editToggle ", selected);
+    //    //Actually need a save(maybe)
+    //    if ($scope.editPk == selected) {
+    //        $scope.editPk = -1;
+    //    }
+    //    else {
+    //        $scope.editPk = selected;
+    //    }
+    //}
     $scope.selectToggle = function (selected) {
 
        $scope.selectedPk = selected;
           
-        }
     }
+    
 
 });
 
