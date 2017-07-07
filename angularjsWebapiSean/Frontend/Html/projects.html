@@ -1,6 +1,7 @@
-﻿<div ng-controller="projectsCtrl">
+﻿<!--Projects page template-->
+<div ng-controller="projectsCtrl">
     <div>
-
+        <!--Projects Table-->
         <table  class="col-md-10 col-md-offset-1 table-borderedtable-condensed projectsTable">
             <thead class="cf">
             <thead class="blackBorder">
@@ -15,7 +16,7 @@
             </thead>
             <tbody id="projectTableBody" class="blackBorder">
 
-               
+               <!--Two spans controlled by ng-if for editing-->
                 <tr ng-repeat="project in projects" class="clickableRow" ng-class="{'selectedRow': selectedPk==project.pk && (state == 0|| state == 2)}" ng-click="selectToggle(project.pk)"  >
                     <td>
                     <span ng-if="editPk == project.pk">
@@ -102,6 +103,7 @@
             </tbody>
         </table>
     </div>
+    <!--Buttons container-->
     <div class="container">
 
         <button class="btn btn-primary" ng-click="deleteToggle()" ng-disabled="selectedPk == -1 || (state != 0 && state != 2)">
@@ -123,6 +125,7 @@
         <button ng-if="state == 3" class="btn btn-primary" ng-click="createProject()">Save New</button>
         
     </div>
+    <!--Task set container-->
     <div id="container" ng-if="selected.task_set.length > 0">
         <table  class="col-md-10 col-md-offset-1 table-bordered table-condensed taskTable">
             

@@ -1,4 +1,5 @@
-﻿//States:
+﻿//Projects page controller
+//States:
 //0: viewing
 //1: editing
 //2: deleting
@@ -13,6 +14,7 @@ app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsSer
     $scope.selected = {};
 
     $scope.state = 0;
+    //Dummy project
     $scope.newProject = {
         title: 'title',
         description: 'description',
@@ -29,6 +31,7 @@ app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsSer
         $location.url('/login');
         return;
     }
+    //Get Projects on load
     ProjectsService.getProjects(token).then(function (res) {
         console.log(res);
         $scope.projects = res;
@@ -59,7 +62,7 @@ app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsSer
             }
         });
     }
-
+    //Toggle new buttons confirm/cancel
     $scope.toggleNew = function () {
         if ($scope.state == 0) {
             $scope.state = 3;
@@ -68,7 +71,7 @@ app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsSer
             $scope.state = 0;
         }
     }
-
+    //Call create project service
     $scope.createProject = function () {
 
 
@@ -90,7 +93,7 @@ app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsSer
             }
         );
     }
-
+    //Toggle edit buttons confirm/cancel
     $scope.editToggle = function () {
 
         console.log("call editToggle ");
@@ -118,7 +121,7 @@ app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsSer
             
         }
     }
-
+    //Save the edited project through service
     $scope.saveEdit = function () {
 
 
@@ -149,7 +152,7 @@ app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsSer
             }
         );
     }
-
+    //Select a row
     $scope.selectToggle = function (selected) {
         if ($scope.editPk == -1){
             $scope.selectedPk = selected;
@@ -159,7 +162,7 @@ app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsSer
 
     }
 
-
+    //Helper
     function getProjectByPk(pk) {
         console.log(pk);
 

@@ -11,12 +11,13 @@ namespace angularjsWebapiSean.Controllers
     [Route("api/projects")]
     public class ProjectsController : Controller
     {
+        //Inject the client
         private Client.IClient client;
         public ProjectsController(IClient _client)
         {
             client = _client;
         }
-
+        //Get all projects
         [Route("get")]
         [HttpGet]
         public async Task<List<ProjectModel>> Get(String token){
@@ -28,7 +29,7 @@ namespace angularjsWebapiSean.Controllers
                 throw e;
             }
         }
-
+        //Update singe project
         [Route("update")]
         [HttpPost]
         public async Task<Boolean> Edit([FromBody]ProjectModel data, String token)
@@ -43,6 +44,7 @@ namespace angularjsWebapiSean.Controllers
                 throw e;
             }
         }
+        //Delete single project
         [Route("delete")]
         [HttpPost]
         public async Task<Boolean> DeleteProject(int pk, String token)
@@ -58,6 +60,7 @@ namespace angularjsWebapiSean.Controllers
                 throw e;
             }
         }
+        //Create single project
         [Route("create")]
         [HttpPost]
         public async Task<ProjectModel> CreateProject([FromBody] ProjectCreateModel project, String token)

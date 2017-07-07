@@ -19,7 +19,7 @@ namespace angularjsWebapiSean.Controllers
             client = _client;
         }
 
-        // POST api/values
+        //Just retrives the api token
         [HttpPost]
         public async Task<String> Post(string username, string password)
         {
