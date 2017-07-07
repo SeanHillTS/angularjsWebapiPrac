@@ -119,6 +119,10 @@ namespace angularjsWebapiSean.Client
                     client.DefaultRequestHeaders.Remove("Authorization");
                     return true;
                 }
+                else if (httpResponse.ReasonPhrase == "NOT FOUND")
+                {
+                    throw new Exception("Project not found");
+                }
                 else throw new Exception("Update Failed");
 
             }
@@ -143,6 +147,10 @@ namespace angularjsWebapiSean.Client
                 {
                     client.DefaultRequestHeaders.Remove("Authorization");
                     return true;
+                }
+                else if(httpResponse.ReasonPhrase =="NOT FOUND")
+                {
+                   throw new Exception("Project not found");
                 }
                 else throw new Exception("Delete Failed");
 
@@ -172,6 +180,10 @@ namespace angularjsWebapiSean.Client
 
                     if (responseContent == "{\"detail\":\"No such user\"}")
                         throw new Exception("Invalid token");
+
+                    if (responseContent.Contains("description")){
+                        throw new Exception("Invalid data");
+                    }
 
                     var response = JsonConvert.DeserializeObject<ProjectModel>(responseContent);
                     client.DefaultRequestHeaders.Remove("Authorization");

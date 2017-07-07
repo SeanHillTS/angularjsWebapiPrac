@@ -72,54 +72,66 @@ namespace tests
             }
         }
 
-        //These mess with data, need to mock some HttpClient
+        //Checks if service is actually called using incorrect data as not to change anything
+        [TestMethod]
+        public async Task ShouldHitCreateService()
+        {
+            try
+            {
+                var result = await client.createProject(new ProjectCreateModel()
+                {
+                    description = "",
+                    title = "test",
+                    end_date = "2017-11-24",
+                    start_date = "2017-11-24",
+                    is_active = false,
+                    is_billable = false
+                }, token);
 
-        //[TestMethod]
-        //public async Task ShouldCreateProject()
-        //{
-        //    try
-        //    {
-        //        var result = await client.createProject(new ProjectCreateModel()
-        //        {
-        //            description = "test",
-        //            title = "test",
-        //            end_date = "2017-11-24",
-        //            start_date = "2017-11-24",
-        //            is_active = false,
-        //            is_billable = false
-        //        }, token);
+                Assert.IsNotNull(result);
 
-        //        Assert.IsNotNull(result);
-        //        created.Add(result.pk);
-        //        //var delete = await client.deleteProject(result.pk, token);
-        //        //Console.WriteLine(delete);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Assert.Fail("Should not throw exception - " + e.Message);
-        //    }
-        //}
+            }
+            catch (Exception e)
+            {
+                //This means that the api was called correctly since that was invalid data
+                Assert.IsTrue(e.Message == "Invalid data");
+            }
+        }
 
+        //Checks if service is actually called using incorrect data as not to change anything
+        [TestMethod]
+        public async Task ShouldHitDeleteService()
+        {
+            try
+            {
+                
+                    var result = await client.deleteProject(-1, token);
 
-        //[TestMethod]
-        //public async Task ShouldDeleteProject()
-        //{
-        //    try { 
-        //    if(created.Count > 0)
-        //    {
-        //        var result = await client.deleteProject(created[0], token);
+               
+            }
+            catch (Exception e)
+            {
+                Assert.IsTrue(e.Message == "Project not found");
+            }
+        }
+        //Checks if service is actually called using incorrect data as not to change anything
+        [TestMethod]
+        public async Task ShouldHitUpdateService()
+        {
+            try
+            {
 
-        //    }
-        //    }
-        //    catch(Exception e)
-        //    {
-        //        Assert.Fail("Should not throw exception - " + e.Message);
-        //    }
-        //}
+                var result = await client.updateProject(new ProjectModel(), token);
 
 
-        //Task<bool> updateProject(ProjectModel proj, String token);
-        //Task<bool> deleteProject(int pk, String token);
+            }
+            catch (Exception e)
+            {
+                Assert.IsTrue(e.Message == "Project not found");
+            }
+        }
+
+
 
     }
 
