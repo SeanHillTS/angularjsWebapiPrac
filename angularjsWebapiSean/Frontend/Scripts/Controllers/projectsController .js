@@ -13,7 +13,7 @@ app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsSer
 
     $scope.state = 0;
 
-    $scope.addingProject = false;
+   
     $scope.editingProject = false;
 
     var token = $window.sessionStorage.getItem("token");
@@ -54,7 +54,12 @@ app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsSer
     }
 
     $scope.toggleNew = function () {
-        $scope.addingProject = !$scope.addingProject;
+        if ($scope.state == 0) {
+            $scope.state = 3;
+        }
+        else if ($scope.state == 3) {
+            $scope.state = 0;
+        }
     }
 
     $scope.editToggle = function () {
@@ -62,10 +67,12 @@ app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsSer
         console.log("call editToggle ");
         //Actually need a save(maybe)
         if ($scope.editPk == $scope.selectedPk) {
+            $scope.state = 0;
             $scope.editPk = -1;
            
         }
         else {
+            $scope.state = 1;
             $scope.editPk = $scope.selectedPk;
         }
     }

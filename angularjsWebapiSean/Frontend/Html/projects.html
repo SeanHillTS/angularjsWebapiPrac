@@ -16,7 +16,7 @@
             <tbody id="projectTableBody" class="blackBorder">
 
                
-                <tr ng-repeat="project in projects" class="clickableRow" ng-class="{'selectedRow': selectedPk==project.pk && editPk == -1}" ng-click="selectToggle(project.pk)"  ng-dblclick="editToggle(project.pk)">
+                <tr ng-repeat="project in projects" class="clickableRow" ng-class="{'selectedRow': selectedPk==project.pk && state == 0}" ng-click="selectToggle(project.pk)"  ng-dblclick="editToggle(project.pk)">
                     <td>
                     <span ng-if="editPk == project.pk">
                         <input class="selectedInput" type="text" ng-model="project.title" />
@@ -66,7 +66,7 @@
                         </span>
                     </td>
                 </tr>
-                <tr ng-if="addingProject">
+                <tr ng-if="state == 3">
                     <td>
                         <span>
                             <input class="selectedInput" type="text" ng-model="newProject.title" />
@@ -105,20 +105,22 @@
     <div class="container">
 
         <button class="btn btn-primary" ng-click="deleteToggle()" ng-disabled="selectedPk == -1 || (state != 0 && state != 2)">
-            <span ng-if="state == 0">Delete</span>
+            <span ng-if="state != 2">Delete</span>
             <span ng-if="state == 2">Cancel</span>
         </button>
         <button class="btn btn-primary" ng-if="state == 2" ng-click="deleteProject()">Confirm Delete</button>
 
-        <button class="btn btn-primary" ng-click="editToggle()">
-            <span ng-if="editPk == -1">Edit</span>
-            <span ng-if="editPk != -1">Cancel</span>
+        <button class="btn btn-primary" ng-click="editToggle()" ng-disabled="selectedPk == -1 || (state != 0 && state != 1)">
+            <span ng-if="state != 1">Edit</span>
+            <span ng-if="state == 1">Cancel</span>
         </button>
-        <button ng-if="editPk != -1" class="btn btn-primary" ng-click="saveEdit()">Save Edit</button>
+        <button ng-if="state == 1" class="btn btn-primary" ng-click="saveEdit()">Save Edit</button>
 
-        <button ng-if="!addingProject" class="btn btn-primary" ng-click="toggleNew()">New Record</button>
-        <button ng-if="addingProject" class="btn btn-primary" ng-click="toggleNew()">Cancel</button>
-        <button ng-if="addingProject" class="btn btn-primary" ng-click="saveProject()">Save</button>
+        <button  class="btn btn-primary" ng-click="toggleNew()" ng-disabled="(state != 0 && state != 3)">
+            <span ng-if="state != 3">New Record</span>
+            <span ng-if="state == 3">Cancel</span>
+        </button>
+        <button ng-if="state == 3" class="btn btn-primary" ng-click="saveProject()">Save New</button>
         
     </div>
     <div id="tasksContainer">
