@@ -128,19 +128,15 @@ app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsSer
                 //edit model
                 for (var i = 0; i < $scope.projects.length; i++) {
                     if ($scope.projects[i].pk == $scope.editPk) {
-                        $scope.projects[i] =
-                            {
-                            pk: $scope.editingProject.pk,
-                            title: $scope.editingProject.title,
-                            description: $scope.editingProject.description,
-                            start_date: reformatDate($scope.editingProject.start_date),
-                            end_date: reformatDate($scope.editingProject.end_date),
-                            is_billable: $scope.editingProject.is_billable,
-                            is_active: $scope.editingProject.is_active
-                            };
-
-
-                            ;
+                        
+                        $scope.projects[i].pk = $scope.editingProject.pk;
+                        $scope.projects[i].title = $scope.editingProject.title;
+                        $scope.projects[i].description = $scope.editingProject.description;
+                        $scope.projects[i].start_date = reformatDate($scope.editingProject.start_date);
+                        $scope.projects[i].end_date = reformatDate($scope.editingProject.end_date);
+                        $scope.projects[i].is_billable = $scope.editingProject.is_billable;
+                        $scope.projects[i].is_active = $scope.editingProject.is_active;
+                          
                     }
                 }
                 $scope.editPk = -1;
