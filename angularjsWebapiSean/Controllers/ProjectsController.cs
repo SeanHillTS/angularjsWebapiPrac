@@ -31,7 +31,7 @@ namespace angularjsWebapiSean.Controllers
 
         [Route("update")]
         [HttpPost]
-        public async Task<Boolean> Edit(ProjectModel data, String token)
+        public async Task<Boolean> Edit([FromBody]ProjectModel data, String token)
         {
             Console.WriteLine(data);
             try

@@ -19,7 +19,7 @@
                 <tr ng-repeat="project in projects" class="clickableRow" ng-class="{'selectedRow': selectedPk==project.pk && state == 0}" ng-click="selectToggle(project.pk)"  ng-dblclick="editToggle(project.pk)">
                     <td>
                     <span ng-if="editPk == project.pk">
-                        <input class="selectedInput" type="text" ng-model="project.title" />
+                        <input class="selectedInput" type="text" ng-model="editingProject.title" />
                     </span>
                     <span ng-if="editPk != project.pk">
                         {{project.title}}
@@ -27,7 +27,7 @@
                     </td>
                     <td>
                         <span ng-if="editPk == project.pk">
-                            <input class="selectedInput" type="text" ng-model="project.description" />
+                            <input class="selectedInput" type="text" ng-model="editingProject.description" />
                         </span>
                         <span ng-if="editPk != project.pk">
                             {{project.description}}
@@ -35,7 +35,7 @@
                     </td>
                     <td>
                         <span ng-if="editPk == project.pk">
-                            <input class="selectedInput" type="text" ng-model="project.start_date" />
+                            <input class="selectedInput" type="date" ng-model="editingProject.start_date" />
                         </span>
                         <span ng-if="editPk != project.pk">
                             {{project.start_date}}
@@ -43,7 +43,7 @@
                     </td>
                     <td>
                         <span ng-if="editPk == project.pk">
-                            <input class="selectedInput" type="text" ng-model="project.end_date" />
+                            <input class="selectedInput" type="date" ng-model="editingProject.end_date" />
                         </span>
                         <span ng-if="editPk != project.pk">
                             {{project.end_date}}
@@ -51,7 +51,7 @@
                     </td>
                     <td>
                         <span ng-if="editPk == project.pk">
-                            <input class="selectedInput" type="text" ng-model="project.is_billable" />
+                            <input type="checkbox" ng-model="editingProject.is_billable" />
                         </span>
                         <span ng-if="editPk != project.pk">
                             {{project.is_billable}}
@@ -59,7 +59,7 @@
                     </td>
                     <td>
                         <span ng-if="editPk == project.pk">
-                            <input class="selectedInput" type="text" ng-model="project.is_active" />
+                            <input type="checkbox" ng-model="editingProject.is_active" />
                         </span>
                         <span ng-if="editPk != project.pk">
                             {{project.is_active}}

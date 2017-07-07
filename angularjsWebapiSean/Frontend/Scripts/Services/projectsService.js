@@ -37,6 +37,33 @@
         });
     }
 
+    projectsFunctions.updateProject = function (project, token) {
+        return $q(function (resolve, reject) {
+
+            //resolve(mockProjects);
+            var tempProject = {
+                pk: project.pk,
+                title: project.title,
+                description: project.description,
+                start_date: reformatDate(project.start_date),
+                end_date: reformatDate(project.end_date),
+                is_billable: project.is_billable,
+                is_active: project.is_active
+            };
+            console.log(tempProject);
+            $http.post('api/projects/update?token=' + $window.sessionStorage.getItem("token"), tempProject).then(function (res) {
+                console.log(res);
+                resolve(res.data);
+
+            },
+                function (err) {
+                    reject(err);
+                }
+
+            );
+        });
+    }
+
     projectsFunctions.createProject = function (project, token) {
             return $q(function (resolve, reject) {
 
