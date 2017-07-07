@@ -10,6 +10,7 @@ app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsSer
     $scope.projects = {};
     $scope.editPk = -1;
     $scope.selectedPk = -1;
+    $scope.selected = {};
 
     $scope.state = 0;
     $scope.newProject = {
@@ -142,8 +143,11 @@ app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsSer
     }
 
     $scope.selectToggle = function (selected) {
-        if ($scope.editPk == -1)
+        if ($scope.editPk == -1){
             $scope.selectedPk = selected;
+            $scope.selected = getProjectByPk(selected);
+            console.log($scope.selected);
+        }
 
     }
 
