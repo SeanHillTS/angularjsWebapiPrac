@@ -8,6 +8,7 @@ app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsSer
     $scope.selectedPk = -1;
     $scope.addingProject = false;
     $scope.editingProject = false;
+    $scope.deletingProject = false;
 
     var token = $window.sessionStorage.getItem("token");
     if (token == null) {
@@ -19,6 +20,10 @@ app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsSer
         $scope.projects = res;
     });
 
+    //Toggle the delete buttons
+    $scope.deleteToggle = function(){
+        $scope.deletingProject = !$scope.deletingProject;
+    }
 
     $scope.deleteProject = function(){
         console.log("delete called");
@@ -29,7 +34,9 @@ app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsSer
                 $scope.projects = $scope.projects.filter(function (obj) {
                 return obj.pk !== $scope.selectedPk;
                 });
-            $scope.selectedPk = -1;
+                $scope.selectedPk = -1;
+                //Reset deleting state
+                $scope.deletingProject = false;
             }
         });
     }
@@ -44,6 +51,7 @@ app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsSer
         //Actually need a save(maybe)
         if ($scope.editPk == $scope.selectedPk) {
             $scope.editPk = -1;
+           
         }
         else {
             $scope.editPk = $scope.selectedPk;
@@ -55,7 +63,7 @@ app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsSer
     }
 
     $scope.selectToggle = function (selected) {
-
+        if ($scope.editPk == -1)
        $scope.selectedPk = selected;
           
     }

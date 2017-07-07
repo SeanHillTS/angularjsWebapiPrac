@@ -16,7 +16,7 @@
             <tbody id="projectTableBody" class="blackBorder">
 
                
-                <tr ng-repeat="project in projects" class="clickableRow" ng-class="{'selectedRow': selectedPk==project.pk}" ng-click="selectToggle(project.pk)"  ng-dblclick="editToggle(project.pk)">
+                <tr ng-repeat="project in projects" class="clickableRow" ng-class="{'selectedRow': selectedPk==project.pk && editPk == -1}" ng-click="selectToggle(project.pk)"  ng-dblclick="editToggle(project.pk)">
                     <td>
                     <span ng-if="editPk == project.pk">
                         <input class="selectedInput" type="text" ng-model="project.title" />
@@ -103,13 +103,18 @@
         </table>
     </div>
     <div class="container">
-        <button class="btn btn-primary" ng-click="deleteProject()">Delete</button>
+
+        <button class="btn btn-primary" ng-click="deleteToggle()" ng-disabled="selectedPk == -1">
+            <span ng-if="!deletingProject">Delete</span>
+            <span ng-if="deletingProject">Cancel</span>
+        </button>
+        <button class="btn btn-primary" ng-if="deletingProject" ng-click="deleteProject()">Confirm Delete</button>
 
         <button class="btn btn-primary" ng-click="editToggle()">
             <span ng-if="editPk == -1">Edit</span>
             <span ng-if="editPk != -1">Cancel</span>
         </button>
-        <button ng-if="editPk != -1" class="btn btn-primary" ng-click="saveEdit()">Save</button>
+        <button ng-if="editPk != -1" class="btn btn-primary" ng-click="saveEdit()">Save Edit</button>
 
         <button ng-if="!addingProject" class="btn btn-primary" ng-click="toggleNew()">New Record</button>
         <button ng-if="addingProject" class="btn btn-primary" ng-click="toggleNew()">Cancel</button>
