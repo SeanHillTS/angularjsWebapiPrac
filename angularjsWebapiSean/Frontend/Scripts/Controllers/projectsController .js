@@ -73,7 +73,17 @@ app.controller('projectsCtrl', function ($scope, $window, $location, ProjectsSer
 
        
         ProjectsService.createProject($scope.newProject).then(function (res) {
-            console.log(res);
+            $scope.projects.push(res);
+            $scope.newProject = {
+                title: 'title',
+                description: 'description',
+                start_date: new Date(),
+                end_date: new Date(),
+                is_billable: false,
+                is_active: false
+            };
+            $scope.state = 0;
+
         },
             function (err) {
                 console.log(err);
